@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+    # debugger # Ejercicios 10.2.3
   end
   def create
     @user = User.find_by(email: params[:session][:email].downcase)
@@ -8,7 +9,8 @@ class SessionsController < ApplicationController
       log_in @user
       #remember user
       params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
-      redirect_to @user
+      # 10.32 redirect_to @user
+      redirect_back_or @user # 10.32
     else
       # Create an error message.
       flash.now[:danger] = 'Combinacion invalida para email/password' # Not quite right!

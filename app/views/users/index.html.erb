@@ -1,0 +1,10 @@
+<% provide(:title, 'Todos los usuarios') %>
+<h1>Todos los usuarios</h1>
+
+<%= will_paginate %>
+
+<ul class="users">
+  <%= render @users %> <!-- @users de tipo User, refactoriza a parcial app/views/users/_user.html.erb -->
+</ul>
+
+<%= will_paginate %>
