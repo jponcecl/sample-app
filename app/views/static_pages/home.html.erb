@@ -1,14 +1,21 @@
-<div class="center jumbotron">
-  <h1>Bienvenido a la App de Ejemplo</h1>
+<% if logged_in? %>
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="user_info">
+        <%= render 'shared/user_info' %>
+      </section>
+      <section class="micropost_form">
+        <%= render 'shared/micropost_form' %>
+      </section>
+    </aside>
 
-  <h2>
-    Este es el home page para
-    <a href="https://www.railstutorial.org/">Ruby on Rails Tutorial</a>
-    aplicación de ejemplo.
-  </h2>
-
-  <%= link_to "Registrate ahora!", signup_path, class: "btn btn-lg btn-primary" %>
-</div>
-
-<%= link_to image_tag("rails.png", alt: "Logo Rails"), 'http://rubyonrails.org/' %>
-<%#= image_tag("kitten.jpg", alt: "Logo Gato") %>
+<!-- insertado en 13.49 -->
+    <div class="col-md-8">
+      <h3>Micropost Feed</h3>
+      <%= render 'shared/feed' %>
+    </div>
+<!-- insertado en 13.49 -->
+  </div>
+<% else %>
+  <%= render 'welcome' %>
+<% end %>
