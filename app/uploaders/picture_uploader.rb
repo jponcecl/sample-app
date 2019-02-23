@@ -13,6 +13,7 @@ class PictureUploader < CarrierWave::Uploader::Base
   ### 13.69
 
   if Rails.env.production?
+#    storage :fog
     storage :fog
   else
     storage :file
