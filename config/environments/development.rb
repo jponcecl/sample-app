@@ -30,7 +30,7 @@ Rails.application.configure do
   ########config.action_mailer.raise_delivery_errors = false
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :test
-  host = '192.168.43.36:3000' # Don't use this literally; use your local dev host instead
+  host = '192.168.0.14:3000' # Don't use this literally; use your local dev host instead
   # Use this on the cloud IDE.
   config.action_mailer.default_url_options = { host: host, protocol: 'http' }
   # Use this if developing on localhost.

@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy] # 10.15 # Index en 10.35 # destroy 10.58
+  # 14.25 before_action :logged_in_user, only: [:index, :edit, :update, :destroy] # 10.15 # Index en 10.35 # destroy 10.58
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy,
+                                        :following, :followers] # 14.25
   before_action :correct_user,   only: [:edit, :update] # 10.25
   before_action :admin_user,     only: :destroy
 
@@ -34,11 +36,13 @@ class UsersController < ApplicationController
     end
   end
   def edit
-    ############# 10.25 @user = User.find(params[:id])
+    ############# 10.25
+    @user = User.find(params[:id])
   end
 
   def update
-    ############# 10.25 @user = User.find(params[:id])
+    ############# 10.25
+    @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       # Handle a successful update.
       flash[:success] = "Perfil actualizado"
@@ -53,6 +57,20 @@ class UsersController < ApplicationController
     flash[:success] = "Usuario borrado"
     redirect_to users_url
   end
+
+  def following ### 14.25
+    @title = "Following"
+    @user  = User.find(params[:id])
+    @users = @user.following.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "Followers"
+    @user  = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
+  end ### 14.25
 
   private
 
